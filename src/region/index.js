@@ -30,6 +30,8 @@ async function exportExcel() {
     department_name: '产品'
   }];
 
+  const nameManageHashMap = {}
+
   function addProvince() {
     const provinces = Array.from(regionData.reduce((p, c) => {
       p.add(c.province);
@@ -112,11 +114,11 @@ async function exportExcel() {
     // 使用indirect函数添加引用, 渲染岗位
     ws.getCell(row, 3).dataValidation = {
       type: 'list',
-      formulae: [`=INDIRECT(B${row})`]
+      formulae: [`=INDIRECT($B$${row})`]
     };
     ws.getCell(row, 4).dataValidation = {
       type: 'list',
-      formulae: [`=INDIRECT(C${row})`]
+      formulae: [`=INDIRECT($C$${row})`]
     };
   });
 
@@ -141,7 +143,7 @@ async function exportExcel() {
   district.addRows(districts)
 
   city.eachRow(function (row, i) {
-    const province = provinces[i - 1];
+    let province = provinces[i - 1];
     console.log(province, i)
     row.eachCell(function (cell, colNumber) {
       cell.addName(province);
@@ -152,7 +154,9 @@ async function exportExcel() {
   district.eachRow(function (row, i) {
     const city = citysArr[i - 1];
     row.eachCell(function (cell, colNumber) {
-      cell.addName(city);
+      if (city !== "其他") {
+        cell.addName(city);
+      }
     });
   });
 

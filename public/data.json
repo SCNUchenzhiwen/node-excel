@@ -2706,7 +2706,7 @@
           "depth": 2,
           "keyword": "其他其他",
           "province": "其他",
-          "city": "其他1",
+          "city": "其他",
           "district": "其他",
           "cityid": 1,
           "districtid": 1,
@@ -2714,7 +2714,7 @@
             {
               "id": 2,
               "parentid": "1",
-              "name": "其他2",
+              "name": "其他",
               "depth": 3,
               "keyword": "其他其他其他",
               "province": "其他",
